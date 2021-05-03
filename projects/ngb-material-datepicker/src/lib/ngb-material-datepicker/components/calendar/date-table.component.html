@@ -1,0 +1,11 @@
+<div class="week" *ngFor="let week of dateTable">
+    <div class="week__date-wrapper" *ngFor="let date of week">
+        <div
+            class="week__date"
+            [ngClass]="{ selected: date | isSelectedDate: selectedDate }"
+            (click)="selectDate(date)"
+        >
+            {{ date | fillDateWithZeros }}
+        </div>
+    </div>
+</div>

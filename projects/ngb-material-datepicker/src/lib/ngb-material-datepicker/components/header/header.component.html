@@ -1,0 +1,6 @@
+<header class="header" [ngStyle]="colorStyle">
+    <div class="header__days">{{ days | convertWeekAlias }}</div>
+    <div class="header__close" (click)="clickClose()">
+        <mat-icon>close</mat-icon>
+    </div>
+</header>

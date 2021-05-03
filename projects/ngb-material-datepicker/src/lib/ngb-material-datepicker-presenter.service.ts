@@ -1,0 +1,52 @@
+import { Injectable } from '@angular/core';
+import { A11yColor } from './libs/a11y-color';
+
+@Injectable({
+    providedIn: 'root',
+})
+export class NgbMaterialDatepickerPresenterService {
+    constructor() {}
+
+    /**
+     * 日付の背景色を初期化する
+     * @param dateColor
+     */
+    public initializeDateColor(dateColor?: string): string {
+        if (dateColor == null) {
+            return '#689F37';
+        }
+        if (!A11yColor.validColorCode(dateColor)) {
+            return '#689F37';
+        }
+        return dateColor;
+    }
+
+    /**
+     * ヘッダー の背景色を初期化する
+     * @param headerColor
+     */
+    public initializeHeaderColor(headerColor?: string): string {
+        if (headerColor == null) {
+            return '#8CC24A';
+        }
+        if (!A11yColor.validColorCode(headerColor)) {
+            return '#8CC24A';
+        }
+        return headerColor;
+    }
+
+    /**
+     * 背景色から文字色を取得する。
+     * @param backgroundColor
+     */
+    public getTextColor(backgroundColor?: string): string {
+        if (backgroundColor == null) {
+            throw new Error('Background Color is Empty.');
+        }
+        if (!A11yColor.validColorCode(backgroundColor)) {
+            throw new Error('Background Color is invalid.');
+        }
+
+        return A11yColor.getTextColor(backgroundColor);
+    }
+}

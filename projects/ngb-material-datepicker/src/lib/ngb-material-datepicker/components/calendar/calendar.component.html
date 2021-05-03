@@ -1,0 +1,13 @@
+<lib-year-month class="year-month">{{ selectedMonth }}月&nbsp;{{ selectedYear }}</lib-year-month>
+
+<lib-week class="week" [displayWeek]="displayWeek"></lib-week>
+
+<lib-date-table
+    class="date-table"
+    [selectedBackgroundColor]="selectedBackgroundColor"
+    [selectedTextColor]="selectedTextColor"
+    [displayWeek]="displayWeek"
+    [dateTable]="dateTable"
+    [selectedDate]="selectedDate"
+    (onSelectDate)="selectDate($event)"
+></lib-date-table>

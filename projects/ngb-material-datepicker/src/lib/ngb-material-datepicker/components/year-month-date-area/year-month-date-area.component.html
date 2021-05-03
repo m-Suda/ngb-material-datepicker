@@ -1,0 +1,13 @@
+<div class="year-month-date-area" [ngStyle]="colorStyle">
+    <lib-select-month
+        [month]="selectedMonth"
+        (onClickLastMonth)="onLastMonth()"
+        (onClickNextMonth)="onNextMonth()"
+    ></lib-select-month>
+    <lib-select-date>{{ selectedDate | fillDateWithZeros }}</lib-select-date>
+    <lib-select-year
+        [year]="selectedYear"
+        (onClickLastYear)="onLastYear()"
+        (onClickNextYear)="onNextYear()"
+    ></lib-select-year>
+</div>

@@ -1,0 +1,25 @@
+:host {
+    display: block;
+
+    --selected-background-color: #8cc24a;
+    --selected-color: #ffffff;
+    .selected {
+        background-color: var(--selected-background-color);
+        color: var(--selected-color);
+        border-radius: 50%;
+    }
+
+    .week {
+        display: flex;
+
+        .week__date-wrapper {
+            width: calc(100% / 7);
+            padding: 0.3rem;
+        }
+        .week__date {
+            text-align: center;
+            line-height: 1.85rem;
+            cursor: default;
+        }
+    }
+}

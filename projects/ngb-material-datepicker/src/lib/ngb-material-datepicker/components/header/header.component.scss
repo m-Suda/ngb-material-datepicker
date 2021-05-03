@@ -1,0 +1,22 @@
+:host {
+    display: block;
+
+    .header {
+        position: relative;
+        padding: 0.2rem 0;
+        text-align: center;
+
+        .header__days {
+            width: 100%;
+        }
+
+        .header__close {
+            position: absolute;
+            top: 0.05rem;
+            right: 0.25rem;
+            cursor: default;
+            // iconの高さと合わせる
+            height: 24px;
+        }
+    }
+}

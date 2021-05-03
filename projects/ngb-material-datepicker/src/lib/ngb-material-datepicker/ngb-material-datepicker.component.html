@@ -1,0 +1,30 @@
+<lib-header
+    class="header"
+    [days]="selectedDays"
+    [backgroundColor]="headerColor"
+    [textColor]="headerTextColor"
+    (onClickClose)="clickClose()"
+></lib-header>
+
+<lib-year-month-date-area
+    class="year-month-date-area"
+    [backgroundColor]="dateColor"
+    [textColor]="dateTextColor"
+    [selectedYear]="selectedYear"
+    [selectedMonth]="selectedMonth"
+    [selectedDate]="selectedDate"
+></lib-year-month-date-area>
+
+<lib-calendar
+    class="calendar"
+    [selectedBackgroundColor]="dateColor"
+    [selectedTextColor]="dateTextColor"
+    [displayWeek]="displayWeek"
+    [selectedYear]="selectedYear"
+    [selectedMonth]="selectedMonth"
+    [selectedDate]="selectedDate"
+    [dateTable]="dataTable"
+    (onSelectDate)="selectDate($event)"
+></lib-calendar>
+
+<lib-footer class="footer" (onClickOk)="clickOk()" (onClickCancel)="clickCancel()"></lib-footer>
