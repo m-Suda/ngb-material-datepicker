@@ -3,6 +3,16 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "bootstrap-material-datepicker": [
+        "dist/bootstrap-material-datepicker/bootstrap-material-datepicker",
+        "dist/bootstrap-material-datepicker"
+      ],
+      "ngb-material-datepicker": [
+        "dist/ngb-material-datepicker/ngb-material-datepicker",
+        "dist/ngb-material-datepicker"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
