@@ -1,30 +1,36 @@
-<lib-header
-    class="header"
-    [days]="selectedDays"
-    [backgroundColor]="headerColor"
-    [textColor]="headerTextColor"
-    (onClickClose)="clickClose()"
-></lib-header>
+<ng-container *ngIf="dateState$ | async as dateState">
+    <lib-header
+        class="header"
+        [days]="dateState.day"
+        [backgroundColor]="headerColor"
+        [textColor]="headerTextColor"
+        (onClickClose)="clickClose()"
+    ></lib-header>
 
-<lib-year-month-date-area
-    class="year-month-date-area"
-    [backgroundColor]="dateColor"
-    [textColor]="dateTextColor"
-    [selectedYear]="selectedYear"
-    [selectedMonth]="selectedMonth"
-    [selectedDate]="selectedDate"
-></lib-year-month-date-area>
+    <lib-year-month-date-area
+        class="year-month-date-area"
+        [backgroundColor]="dateColor"
+        [textColor]="dateTextColor"
+        [selectedYear]="dateState.year"
+        [selectedMonth]="dateState.month"
+        [selectedDate]="dateState.date"
+        (onLastMonth)="lastMonth($event)"
+        (onNextMonth)="nextMonth($event)"
+        (onLastYear)="lastYear($event)"
+        (onNextYear)="nextYear($event)"
+    ></lib-year-month-date-area>
 
-<lib-calendar
-    class="calendar"
-    [selectedBackgroundColor]="dateColor"
-    [selectedTextColor]="dateTextColor"
-    [displayWeek]="displayWeek"
-    [selectedYear]="selectedYear"
-    [selectedMonth]="selectedMonth"
-    [selectedDate]="selectedDate"
-    [dateTable]="dataTable"
-    (onSelectDate)="selectDate($event)"
-></lib-calendar>
+    <lib-calendar
+        class="calendar"
+        [selectedBackgroundColor]="dateColor"
+        [selectedTextColor]="dateTextColor"
+        [displayWeek]="displayWeek"
+        [selectedYear]="dateState.year"
+        [selectedMonth]="dateState.month"
+        [selectedDate]="dateState.date"
+        [dateTable]="dataTable"
+        (onSelectDate)="selectDate($event)"
+    ></lib-calendar>
 
-<lib-footer class="footer" (onClickOk)="clickOk()" (onClickCancel)="clickCancel()"></lib-footer>
+    <lib-footer class="footer" (onClickOk)="clickOk()" (onClickCancel)="clickCancel()"></lib-footer>
+</ng-container>

@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Week, WeekAlias } from '../types/week';
+import { Week } from '../types/week';
 import { DateTable } from '../types/date-table';
 import { DateTableService } from './components/calendar/date-table.service';
 import { NgbMaterialDatepickerService } from '../ngb-material-datepicker.service';
 import { NgbMaterialDatepickerConfig } from '../injector/ngb-material-datepicker-config';
 import { NgbMaterialDatepickerPresenterService } from '../ngb-material-datepicker-presenter.service';
+import { DateService } from '../libs/date.service';
+import { Observable } from 'rxjs';
+import { YearMonthDateDay } from '../types/date';
+import { DateState } from '../states/date-state';
 
 @Component({
     selector: 'lib-ngb-material-datepicker',
@@ -13,10 +17,7 @@ import { NgbMaterialDatepickerPresenterService } from '../ngb-material-datepicke
 })
 export class NgbMaterialDatepickerComponent implements OnInit {
     public displayWeek: Week = ['日', '月', '火', '水', '木', '金', '土'];
-    public selectedYear: number = 2021;
-    public selectedMonth: number = 5;
-    public selectedDate: number = 1;
-    public selectedDays: WeekAlias = 0;
+    public dateState$: Observable<YearMonthDateDay> = this._dateState.dateState$;
     public dataTable: DateTable = [];
     public headerColor: string = '';
     public dateColor: string = '';
@@ -27,27 +28,110 @@ export class NgbMaterialDatepickerComponent implements OnInit {
         private _ngbDatepickerService: NgbMaterialDatepickerService,
         private _presenter: NgbMaterialDatepickerPresenterService,
         private _dataTable: DateTableService,
+        private _date: DateService,
+        private _dateState: DateState,
         private _config: NgbMaterialDatepickerConfig
     ) {}
 
     ngOnInit(): void {
-        const { headerColor, dateColor } = this._config;
+        const { headerColor, dateColor, initializeValue } = this._config;
+
+        // 各Styleを設定
         this.headerColor = this._presenter.initializeHeaderColor(headerColor);
         this.dateColor = this._presenter.initializeDateColor(dateColor);
         this.headerTextColor = this._presenter.getTextColor(this.headerColor);
         this.dateTextColor = this._presenter.getTextColor(this.dateColor);
-        this.dataTable = this._dataTable.create(new Date('2021-05-01'));
+
+        // 日付テーブルを作成する。
+        this.dataTable = this._dataTable.create(initializeValue);
+
+        // 初期値を設定する。
+        const initializeDate = this._date.getYearMonthDateDay(initializeValue);
+        this._dateState.update(initializeDate);
     }
 
-    public selectDate(date: number) {}
-
+    /**
+     * 閉じるがクリックされた。
+     */
     public clickClose() {
         this._ngbDatepickerService.close();
     }
 
+    /**
+     * OKがクリックされた。
+     */
     public clickOk() {}
 
+    /**
+     * Cancelがクリックされた。
+     */
     public clickCancel() {
         this._ngbDatepickerService.close();
+    }
+
+    /**
+     * 日付が選択された。
+     * @param date
+     */
+    public selectDate(date: number) {
+        const { year, month } = this._dateState.currentValue;
+        const zeroBeginningMonth = this._date.convertMonthToZeroStart(month);
+        const day = this._date.getDay(
+            this._date.getDateFromYearMonthDate({ year, month: zeroBeginningMonth, date })
+        );
+        this._dateState.update({ date, day });
+    }
+
+    /**
+     * 前月を表示する。
+     * @param month
+     */
+    public lastMonth(month: number): void {
+        const updateMonth = month !== 1 ? month - 1 : 12;
+        this._dateState.update({ month: updateMonth });
+        this._updateDateTable();
+    }
+
+    /**
+     * 次月を表示する。
+     * @param month
+     */
+    public nextMonth(month: number): void {
+        const updateMonth = month !== 12 ? month + 1 : 1;
+        this._dateState.update({ month: updateMonth });
+        this._updateDateTable();
+    }
+
+    /**
+     * 翌年を表示する。
+     * @param year
+     */
+    public lastYear(year: number): void {
+        this._dateState.update({ year: year - 1 });
+        this._updateDateTable();
+    }
+
+    /**
+     * 去年を表示する。
+     * @param year
+     */
+    public nextYear(year: number): void {
+        this._dateState.update({ year: year + 1 });
+        this._updateDateTable();
+    }
+
+    /**
+     * DateTableを更新する。
+     * @private
+     */
+    private _updateDateTable(): void {
+        const { year, month, date } = this._dateState.currentValue;
+        const convertMonthToZeroStart = this._date.convertMonthToZeroStart(month);
+        const yearMonthDate = this._date.getDateFromYearMonthDate({
+            year,
+            month: convertMonthToZeroStart,
+            date,
+        });
+        this.dataTable = this._dataTable.create(yearMonthDate);
     }
 }
