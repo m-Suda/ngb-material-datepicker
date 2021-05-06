@@ -5,7 +5,8 @@
         "entryFile": "src/public-api.ts",
         "umdModuleIds": {
             "calendarize": "calendarize",
-            "wcag-contrast": "wcag-contrast"
+            "wcag-contrast": "wcag-contrast",
+            "date-fns": "date-fns"
         }
     }
 }
