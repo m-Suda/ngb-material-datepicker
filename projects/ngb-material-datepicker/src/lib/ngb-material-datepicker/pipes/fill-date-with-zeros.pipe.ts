@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DateWrapper } from '../../libs/date-wrapper';
+import { DateService } from '../../libs/date.service';
 
 @Pipe({
     name: 'fillDateWithZeros',
 })
 export class FillDateWithZerosPipe implements PipeTransform {
+    constructor(private _date: DateService) {}
     /**
      * 数値の日付を2桁の0埋めをした文字列日付に変換する
      * @param {number} date
@@ -14,6 +15,6 @@ export class FillDateWithZerosPipe implements PipeTransform {
         if (date === 0) {
             return '';
         }
-        return DateWrapper.fillWithZeros(date);
+        return this._date.fillWithZeros(date);
     }
 }
