@@ -11,9 +11,19 @@ export class AppComponent {
     constructor(private ngbMaterialDatepicker: NgbMaterialDatepickerService) {}
 
     public openDatepicker() {
+        this.ngbMaterialDatepicker.open({});
+    }
+
+    public openDatepickerCustomColor() {
         this.ngbMaterialDatepicker.open({
-            dateColor: '#A0A0A0',
-            headerColor: '#FFD900',
+            dateColor: '#692bff',
+            headerColor: '#7e47ff',
+        });
+    }
+
+    public openDatepickerSpecify() {
+        this.ngbMaterialDatepicker.open({
+            initializeValue: new Date('2021/07/31'),
         });
     }
 }
