@@ -10,10 +10,13 @@ export class DateTableService {
 
     /**
      * DateTableを作成する。
-     * @param date
+     * @param {undefined|Date} date
      * @return {DateTable}
      */
-    public create(date: Date): DateTable {
+    public create(date?: Date): DateTable {
+        if (date == null) {
+            return calendarize(new Date());
+        }
         return calendarize(date);
     }
 }
