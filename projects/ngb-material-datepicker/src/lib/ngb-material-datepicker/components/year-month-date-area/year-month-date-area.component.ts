@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ColorStyle } from '../../../types/color-style';
 
 @Component({
@@ -14,6 +14,11 @@ export class YearMonthDateAreaComponent implements OnInit {
     @Input() backgroundColor: string = '#8CC24A';
     @Input() textColor: string = '#FFFFFF';
 
+    @Output() onLastMonth: EventEmitter<number> = new EventEmitter<number>();
+    @Output() onNextMonth: EventEmitter<number> = new EventEmitter<number>();
+    @Output() onLastYear: EventEmitter<number> = new EventEmitter<number>();
+    @Output() onNextYear: EventEmitter<number> = new EventEmitter<number>();
+
     public colorStyle: ColorStyle = {
         'background-color': this.backgroundColor,
         color: this.textColor,
@@ -28,8 +33,16 @@ export class YearMonthDateAreaComponent implements OnInit {
         };
     }
 
-    public onLastMonth() {}
-    public onNextMonth() {}
-    public onLastYear() {}
-    public onNextYear() {}
+    public lastMonth(month: number) {
+        this.onLastMonth.emit(month);
+    }
+    public nextMonth(month: number) {
+        this.onNextMonth.emit(month);
+    }
+    public lastYear(year: number) {
+        this.onLastYear.emit(year);
+    }
+    public nextYear(year: number) {
+        this.onNextYear.emit(year);
+    }
 }

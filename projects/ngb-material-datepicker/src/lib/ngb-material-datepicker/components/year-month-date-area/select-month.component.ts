@@ -8,18 +8,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SelectMonthComponent implements OnInit {
     @Input() month: number = 0;
 
-    @Output() onClickLastMonth: EventEmitter<void> = new EventEmitter();
-    @Output() onClickNextMonth: EventEmitter<void> = new EventEmitter();
+    @Output() onClickLastMonth: EventEmitter<number> = new EventEmitter();
+    @Output() onClickNextMonth: EventEmitter<number> = new EventEmitter();
 
     constructor() {}
 
     ngOnInit(): void {}
 
     public lastMonth() {
-        this.onClickLastMonth.emit();
+        this.onClickLastMonth.emit(this.month);
     }
 
     public nextMonth() {
-        this.onClickNextMonth.emit();
+        this.onClickNextMonth.emit(this.month);
     }
 }

@@ -8,18 +8,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SelectYearComponent implements OnInit {
     @Input() year: number = 0;
 
-    @Output() onClickLastYear: EventEmitter<void> = new EventEmitter();
-    @Output() onClickNextYear: EventEmitter<void> = new EventEmitter();
+    @Output() onClickLastYear: EventEmitter<number> = new EventEmitter();
+    @Output() onClickNextYear: EventEmitter<number> = new EventEmitter();
 
     constructor() {}
 
     ngOnInit(): void {}
 
     public lastYear() {
-        this.onClickLastYear.emit();
+        this.onClickLastYear.emit(this.year);
     }
 
     public nextYear() {
-        this.onClickNextYear.emit();
+        this.onClickNextYear.emit(this.year);
     }
 }
