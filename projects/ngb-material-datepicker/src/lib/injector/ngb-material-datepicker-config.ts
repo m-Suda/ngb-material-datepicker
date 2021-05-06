@@ -1,5 +1,5 @@
-export class NgbMaterialDatepickerConfig<D = any> {
-    initializeValue?: string;
+export class NgbMaterialDatepickerConfig {
+    initializeValue?: Date;
     headerColor?: string;
     dateColor?: string;
 }
