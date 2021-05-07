@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { getDate, getDay, getMonth, getYear } from 'date-fns';
 import { YearMonthDate, YearMonthDateDay } from '../types/date';
 import { WeekAlias } from '../types/week';
+import { format } from 'date-fns';
 
 @Injectable({
     providedIn: 'root',
@@ -62,6 +63,20 @@ export class DateService {
             return 11;
         }
         return month - 1;
+    }
+
+    /**
+     * 年月日を指定された形式の日付文字列にする。
+     * @param dateFormat
+     * @param source
+     */
+    public format(dateFormat: string, source: YearMonthDate): string {
+        const { year, month: zeroBeginningMonth, date } = source;
+        if (year == null || zeroBeginningMonth == null || date == null) {
+            throw new Error('Source value is null.');
+        }
+
+        return format(new Date(year, zeroBeginningMonth, date), dateFormat);
     }
 
     /**
