@@ -34,13 +34,19 @@ export class NgbMaterialDatepickerComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        const { headerColor, dateColor, initializeValue } = this._config;
+        const {
+            headerColor,
+            dateColor,
+            headerTextColor,
+            dateTextColor,
+            initializeValue,
+        } = this._config;
 
         // 各Styleを設定
         this.headerColor = this._presenter.initializeHeaderColor(headerColor);
         this.dateColor = this._presenter.initializeDateColor(dateColor);
-        this.headerTextColor = this._presenter.getTextColor(this.headerColor);
-        this.dateTextColor = this._presenter.getTextColor(this.dateColor);
+        this.headerTextColor = this._presenter.getTextColor(this.headerColor, headerTextColor);
+        this.dateTextColor = this._presenter.getTextColor(this.dateColor, dateTextColor);
 
         // 日付テーブルを作成する。
         this.dataTable = this._dataTable.create(initializeValue);
