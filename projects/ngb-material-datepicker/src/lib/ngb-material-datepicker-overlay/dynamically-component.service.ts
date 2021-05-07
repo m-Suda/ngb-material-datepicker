@@ -55,7 +55,7 @@ export class DynamicallyComponentService<ComponentClassType> {
      * 動的コンポーネントをdocument.bodyから削除する。
      * @private
      */
-    public removeFromApplication() {
+    private _removeFromApplication() {
         if (!this._dynamicComponentRef) {
             throw new Error('Component has not been created');
         }
