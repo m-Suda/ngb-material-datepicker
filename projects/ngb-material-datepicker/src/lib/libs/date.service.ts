@@ -11,7 +11,7 @@ export class DateService {
     constructor() {}
 
     /**
-     * 日付を2桁の0埋めをする。
+     * 日付を2桁の0埋めする。
      * @param date
      */
     public fillWithZeros(date: number): string {
