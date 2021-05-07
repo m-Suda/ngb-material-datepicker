@@ -38,7 +38,7 @@ export class DynamicallyComponentService<ComponentClassType> {
     ) {
         const componentRef = this.createComponentRef(type, config);
         this.applicationRef.attachView(componentRef.hostView);
-        this.attachComponentToDocumentBody(componentRef);
+        this._attachComponentToDocumentBody(componentRef);
         this._dynamicComponentRef = componentRef;
     }
 
@@ -80,7 +80,7 @@ export class DynamicallyComponentService<ComponentClassType> {
      * @private
      * @return {void}
      */
-    private attachComponentToDocumentBody(componentRef: ComponentRef<ComponentClassType>): void {
+    private _attachComponentToDocumentBody(componentRef: ComponentRef<ComponentClassType>): void {
         const domElm = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
         document.body.appendChild(domElm);
     }
