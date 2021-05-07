@@ -37,7 +37,6 @@ export class NgbMaterialDatepickerPresenterService {
 
     /**
      * 文字色を取得する。文字色が指定されていない場合は、背景色とのコントラスト比から適切な文字色を取得する。
-     * 文字色を取得する。文字色が指定されていない場合は、背景色とのコントラスト比から適切な文字色を取得する。
      * @param backgroundColor
      * @param textColor
      */
