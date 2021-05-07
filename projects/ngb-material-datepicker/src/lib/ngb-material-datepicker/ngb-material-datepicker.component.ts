@@ -68,7 +68,11 @@ export class NgbMaterialDatepickerComponent implements OnInit {
     /**
      * OKがクリックされた。
      */
-    public clickOk() {}
+    public clickOk() {
+        const { outputFormat } = this._config;
+        const result = this._dateState.getDateStringFromCurrentState(outputFormat);
+        this._datepickerRef.close(result);
+    }
 
     /**
      * Cancelがクリックされた。

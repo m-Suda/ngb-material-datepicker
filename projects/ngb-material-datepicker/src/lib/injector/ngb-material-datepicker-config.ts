@@ -4,4 +4,5 @@ export class NgbMaterialDatepickerConfig {
     headerTextColor?: string;
     dateColor?: string;
     dateTextColor?: string;
+    outputFormat?: string;
 }
