@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { NgbMaterialDatepickerInjector } from '../injector/ngb-material-datepicker-injector';
 import { NgbMaterialDatepickerConfig } from '../injector/ngb-material-datepicker-config';
+import { NgbMaterialDatepickerRef } from '../ngb-material-datepicker-ref';
 
 @Injectable({
     providedIn: 'root',
@@ -35,11 +36,19 @@ export class DynamicallyComponentService<ComponentClassType> {
     public appendToApplication(
         type: Type<ComponentClassType>,
         config: NgbMaterialDatepickerConfig
-    ) {
-        const componentRef = this.createComponentRef(type, config);
+    ): NgbMaterialDatepickerRef {
+        const datepickerRef = new NgbMaterialDatepickerRef();
+        const componentRef = this.createComponentRef(type, config, datepickerRef);
         this.applicationRef.attachView(componentRef.hostView);
         this._attachComponentToDocumentBody(componentRef);
         this._dynamicComponentRef = componentRef;
+
+        // 様々な箇所で呼ばれるDatepickerRef.afterCloseを検知し、Datepickerを閉じて購読を解除する。
+        const sub = datepickerRef.afterClose.subscribe(() => {
+            this._removeFromApplication();
+            sub.unsubscribe();
+        });
+        return datepickerRef;
     }
 
     /**
@@ -58,15 +67,18 @@ export class DynamicallyComponentService<ComponentClassType> {
      * ComponentRefを作成する。
      * @param componentType
      * @param config
+     * @param datepickerRef
      * @private
-     * @return {ComponentRef<T>}
+     * @return {ComponentRef}
      */
     private createComponentRef(
         componentType: Type<ComponentClassType>,
-        config: NgbMaterialDatepickerConfig
+        config: NgbMaterialDatepickerConfig,
+        datepickerRef: NgbMaterialDatepickerRef
     ): ComponentRef<ComponentClassType> {
         const map = new WeakMap();
         map.set(NgbMaterialDatepickerConfig, config);
+        map.set(NgbMaterialDatepickerRef, datepickerRef);
 
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory<ComponentClassType>(
             componentType
