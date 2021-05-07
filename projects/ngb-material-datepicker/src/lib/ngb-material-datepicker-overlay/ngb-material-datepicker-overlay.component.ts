@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, Type } from '@angular/core';
 import { DynamicallyComponentService } from './dynamically-component.service';
+import { NgbMaterialDatepickerRef } from '../ngb-material-datepicker-ref';
 
 @Component({
     selector: 'lib-ngb-material-datepicker-container',
@@ -8,7 +9,8 @@ import { DynamicallyComponentService } from './dynamically-component.service';
 })
 export class NgbMaterialDatepickerOverlayComponent implements AfterViewInit, OnDestroy {
     constructor(
-        private _dynamicallyComponent: DynamicallyComponentService<NgbMaterialDatepickerOverlayComponent>
+        private _dynamicallyComponent: DynamicallyComponentService<NgbMaterialDatepickerOverlayComponent>,
+        private _datepickerRef: NgbMaterialDatepickerRef
     ) {}
     ngAfterViewInit(): void {}
 
@@ -19,7 +21,7 @@ export class NgbMaterialDatepickerOverlayComponent implements AfterViewInit, OnD
      * @param {MouseEvent} event
      */
     public onOverlayClick(event: MouseEvent) {
-        this._dynamicallyComponent.removeFromApplication();
+        this._datepickerRef.close();
     }
 
     /**

@@ -9,6 +9,7 @@ import { DateService } from '../libs/date.service';
 import { Observable } from 'rxjs';
 import { YearMonthDateDay } from '../types/date';
 import { DateState } from '../states/date-state';
+import { NgbMaterialDatepickerRef } from '../ngb-material-datepicker-ref';
 
 @Component({
     selector: 'lib-ngb-material-datepicker',
@@ -30,7 +31,8 @@ export class NgbMaterialDatepickerComponent implements OnInit {
         private _dataTable: DateTableService,
         private _date: DateService,
         private _dateState: DateState,
-        private _config: NgbMaterialDatepickerConfig
+        private _config: NgbMaterialDatepickerConfig,
+        private _datepickerRef: NgbMaterialDatepickerRef
     ) {}
 
     ngOnInit(): void {
@@ -60,7 +62,7 @@ export class NgbMaterialDatepickerComponent implements OnInit {
      * 閉じるがクリックされた。
      */
     public clickClose() {
-        this._ngbDatepickerService.close();
+        this._datepickerRef.close();
     }
 
     /**
@@ -72,7 +74,7 @@ export class NgbMaterialDatepickerComponent implements OnInit {
      * Cancelがクリックされた。
      */
     public clickCancel() {
-        this._ngbDatepickerService.close();
+        this._datepickerRef.close();
     }
 
     /**
