@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { A11yColor } from './libs/a11y-color';
+import { A11yColor } from '../libs/a11y-color';
 
 @Injectable({
     providedIn: 'root',
@@ -36,17 +36,18 @@ export class NgbMaterialDatepickerPresenterService {
     }
 
     /**
-     * 背景色から文字色を取得する。
+     * 文字色を取得する。文字色が指定されていない場合は、背景色とのコントラスト比から適切な文字色を取得する。
+     * 文字色を取得する。文字色が指定されていない場合は、背景色とのコントラスト比から適切な文字色を取得する。
      * @param backgroundColor
+     * @param textColor
      */
-    public getTextColor(backgroundColor?: string): string {
-        if (backgroundColor == null) {
-            throw new Error('Background Color is Empty.');
+    public getTextColor(backgroundColor: string, textColor?: string): string {
+        if (textColor == null) {
+            return A11yColor.getTextColor(backgroundColor);
         }
-        if (!A11yColor.validColorCode(backgroundColor)) {
+        if (!A11yColor.validColorCode(textColor)) {
             throw new Error('Background Color is invalid.');
         }
-
-        return A11yColor.getTextColor(backgroundColor);
+        return textColor;
     }
 }

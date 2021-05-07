@@ -4,7 +4,7 @@ import { DateTable } from '../types/date-table';
 import { DateTableService } from './components/calendar/date-table.service';
 import { NgbMaterialDatepickerService } from '../ngb-material-datepicker.service';
 import { NgbMaterialDatepickerConfig } from '../injector/ngb-material-datepicker-config';
-import { NgbMaterialDatepickerPresenterService } from '../ngb-material-datepicker-presenter.service';
+import { NgbMaterialDatepickerPresenterService } from './ngb-material-datepicker-presenter.service';
 import { DateService } from '../libs/date.service';
 import { Observable } from 'rxjs';
 import { YearMonthDateDay } from '../types/date';
