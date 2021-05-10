@@ -1,24 +1,38 @@
-# NgbMaterialDatepicker
+# ngb-material-datepicker
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.12.
+## Dependencies
 
-## Code scaffolding
+-   [calendarize](https://github.com/lukeed/calendarize)
+-   [date-fns](https://github.com/date-fns/date-fns)
+-   [wcag-contrast](https://github.com/tmcw/wcag-contrast)
 
-Run `ng generate component component-name --project ngb-material-datepicker` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngb-material-datepicker`.
-> Note: Don't forget to add `--project ngb-material-datepicker` or else it will be added to the default project in your `angular.json` file. 
+## Quick start
 
-## Build
+```shell
+$ npm install --save ngb-material-datepicker
+```
 
-Run `ng build ngb-material-datepicker` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Usage
 
-## Publishing
+```typescript
+import { NgbMaterialDatepickerService } from 'ngb-material-datepicker';
 
-After building your library with `ng build ngb-material-datepicker`, go to the dist folder `cd dist/ngb-material-datepicker` and run `npm publish`.
+@Component({
+    selector: 'app-example',
+    templateUrl: './example.component.html',
+    styleUrls: ['./example.component.scss'],
+})
+export class AppComponent {
+    constructor(private _datepicker: NgbMaterialDatepickerService) {}
 
-## Running unit tests
+    public open() {
+        this._datepicker.open();
+    }
+}
+```
 
-Run `ng test ngb-material-datepicker` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Configuration
 
-## Further help
+## Development Roadmap
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Development
