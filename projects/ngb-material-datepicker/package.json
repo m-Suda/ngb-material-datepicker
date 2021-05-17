@@ -17,5 +17,6 @@
         "type": "git",
         "url": "https://github.com/m-Suda/ngb-material-datepicker"
     },
-    "homepage": "https://github.com/m-Suda/ngb-material-datepicker"
+    "homepage": "https://github.com/m-Suda/ngb-material-datepicker",
+    "license": "MIT"
 }
