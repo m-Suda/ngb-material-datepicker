@@ -68,3 +68,5 @@ export class AppComponent {
     -   Implement a time picker. You will be able to output the time.
 
 ## LICENSE
+
+The MIT License (see the [LICENSE](https://github.com/m-Suda/ngb-material-datepicker/blob/master/LICENSE) file for the full text)
