@@ -1,5 +1,10 @@
 # ngb-material-datepicker
 
+## Notice
+
+This ngb-material-datepicker v1.0.0 outputs only the date. Time output will be implemented in v2.0.0.  
+Check the development roadmap for more information.
+
 ## Dependencies
 
 -   [calendarize](https://github.com/lukeed/calendarize)
@@ -57,4 +62,9 @@ export class AppComponent {
 
 ## Development Roadmap
 
-## Development
+-   v1.0.0(Current Version)
+    -   Only the date can be output. Time cannot be output.
+-   v2.0.0
+    -   Implement a time picker. You will be able to output the time.
+
+## LICENSE
