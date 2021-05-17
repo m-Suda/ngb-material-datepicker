@@ -1,6 +1,6 @@
 {
     "name": "ngb-material-datepicker",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "peerDependencies": {
         "@angular/common": "^11.2.12",
         "@angular/core": "^11.2.12",
@@ -11,5 +11,11 @@
     },
     "dependencies": {
         "tslib": "^2.0.0"
-    }
+    },
+    "description": "Angular version of Bootstrap Material Datepicker.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/m-Suda/ngb-material-datepicker"
+    },
+    "homepage": "https://github.com/m-Suda/ngb-material-datepicker"
 }
