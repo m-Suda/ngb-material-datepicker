@@ -1,5 +1,6 @@
 import { hex } from 'wcag-contrast';
 
+// @dynamic
 export class A11yColor {
     private static readonly COLOR_CODE_PATTERN = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i;
     public static readonly TEXT_COLOR_BLACK = '#000000';
